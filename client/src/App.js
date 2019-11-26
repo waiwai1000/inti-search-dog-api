@@ -226,7 +226,7 @@ class App extends Component {
 
   select_check_key() {
 
-    var key= document.getElementById('key');
+    var key= document.getElementById('key').value;
    
     const body = {
       'key': key
