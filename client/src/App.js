@@ -39,6 +39,8 @@ class App extends Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.onDismiss = this.onDismiss.bind(this);
     this.onClose = this.onClose.bind(this);
+    this.openregister = this.openregister.bind(this);
+    this.opencheckkey = this.opencheckkey.bind(this);
 
   }
   getAlldogs = () => {
@@ -310,7 +312,7 @@ class App extends Component {
                             this.opencheckkey();
                           }}
                         >
-                          Register
+                          Check api key
                         </Button>
 </div>
                       
