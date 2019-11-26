@@ -192,12 +192,21 @@ confirm("Are you sure to delete?")
     });
     
   }
+   generateRandomString(length) {
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+     
+    for (var i = 0; i < length; i++)
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+     
+    return text;
+  }
   
   register_key() {
 
    
     var email = document.getElementById('email').value;
-    var key= Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+    var key= generateRandomString(10);
     const body = {
       'email': email,
       'key': key
