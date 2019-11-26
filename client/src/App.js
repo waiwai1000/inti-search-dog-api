@@ -196,7 +196,7 @@ if(!this.state.keystatus)
   register_key() {
    
     var email = document.getElementById('email').value;
-    var key= "test";
+    var key=   5 + (Math.random() * (1000-24));
     const body = {
       'email': email,
       'key': key
@@ -204,7 +204,7 @@ if(!this.state.keystatus)
     axios
     .post(`/add_api`,body)
     .then(result => {
-      alert("Your Api Key 1 : "+ key);
+      alert("Your Api Key 2 : "+ key);
       console.log(result);
     })
     .catch(error => {
