@@ -120,10 +120,10 @@ app.get('/updatedogimg', (req, res) => {
   });
 
   app.post('/add_api', (req, res) => {
-    const email = req.body.email;
+    const id = req.body.id;
     const key = req.body.key;
     const apikey = new Key({
-      user: email,
+      user: id,
       key: key
   
     });
@@ -138,10 +138,9 @@ app.get('/updatedogimg', (req, res) => {
     });
     });
 
-    app.post('/selectapi', (req, res) => {
-      Key.find({ key : req.body.key})
+    app.get('/selectapi', (req, res) => {
+      Key.find({ _id: req.body._id })
         .then(response => {
-          
           res.status(200).json(response);
         })
         .catch(error => {

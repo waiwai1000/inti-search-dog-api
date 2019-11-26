@@ -117,7 +117,7 @@ class App extends Component {
   alert("Please enter Api key to continue");
   return
 }
-confirm("Are you sure to delete?")
+
     this.setState({
       dogs: this.state.dogs.filter(dog => {
         if (dog._id !== _id) return dog;
@@ -204,7 +204,7 @@ if(!this.state.keystatus)
     axios
     .post(`/add_api`,body)
     .then(result => {
-      alert("Your Api Key : "+ key);
+      alert("Your Api Key 1 : "+ key);
       console.log(result);
     })
     .catch(error => {
