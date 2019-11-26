@@ -443,9 +443,9 @@ confirm("Are you sure you wan to delete");
               <thead>
                 <tr>
                   
-                  <th>name</th>
-                  <th>image</th>
-                  <th>Delete</th>
+                  <th>Name</th>
+                  <th>Image</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -468,7 +468,7 @@ confirm("Are you sure you wan to delete");
                             this.editdog(dog._id);
                           }}
                         >
-                          Edit
+                          View Details
                         </Button>&nbsp;&nbsp;&nbsp;
                         <Button
                           onClick={() => {
