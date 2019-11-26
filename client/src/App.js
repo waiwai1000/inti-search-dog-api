@@ -58,7 +58,7 @@ class App extends Component {
     this.setState({ popRegister: true });
   }
   opencheckkey(){
-    this.setState({ popCheckkey: true });
+    this.setState({ popCheckKey: true });
   }
 
   componentDidMount() {
