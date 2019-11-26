@@ -419,23 +419,7 @@ class App extends Component {
               </Alert>
             </Col>
           </Row>
-          <Row>
-          <Button
-                          onClick={() => {
-                            this.openregister();
-                          }}
-                        >
-                          Register Api Key
-                        </Button>
-                        &nbsp;&nbsp;&nbsp;
-                        <Button
-                          onClick={() => {
-                            this.opencheckkey();
-                          }}
-                        >
-                          Enter Api Key
-                        </Button>
-            </Row>
+          
             <Row>
             <Col>
               <Form onSubmit={this.onSubmit}>
