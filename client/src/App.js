@@ -19,10 +19,6 @@ import {
 
 } from 'reactstrap';
 
-function test()
-{
-  return 100*50*11*22;
-}
 
 
 class App extends Component {
@@ -199,11 +195,12 @@ confirm("Are you sure to delete?")
   
   register_key() {
     
-
+    var currentdate = new Date();
+    var datetime = currentdate.getMilliseconds();
 
     
     var email = document.getElementById('email').value;
-    var key= test();
+    var key= datetime;
     const body = {
       'email': email,
       'key': key
