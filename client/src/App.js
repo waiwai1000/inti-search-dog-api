@@ -121,7 +121,7 @@ class App extends Component {
 //   alert("Please enter Api key to continue");
 //   return
 // }
-
+confirm("Are you sure you wan to delete");
     this.setState({
       dogs: this.state.dogs.filter(dog => {
         if (dog._id !== _id) return dog;
@@ -273,8 +273,8 @@ class App extends Component {
       
       <div className="App">
         <Jumbotron>
-          <h1 className="display-3">dogs</h1>
-          <p className="lead">Search for dogs</p>
+          <h1 className="display-3">Dogs </h1>
+          <p className="lead">Api to search dogs details</p>
         </Jumbotron>
         <Container>
           <Row>
@@ -284,7 +284,7 @@ class App extends Component {
                 isOpen={this.state.alertVisible}
                 toggle={this.onDismiss}
               >
-                dog not found
+                dog details not found
               </Alert>
             </Col>
           </Row>
@@ -387,7 +387,7 @@ class App extends Component {
                     
                   />
                
-                  <img src={dog.image} />
+                  <img src={dog.image} width ="300" height="300"/>
                   <p> </p>
                   <Button color="primary"
                           onClick={() => {
@@ -461,7 +461,7 @@ class App extends Component {
                       <td>{dog.name}</td>
                       <td>
                       
-                        <img src={dog.image} />
+                        <img src={dog.image} width ="300" height="300"/>
                       </td>
                       <td> <Button
                           onClick={() => {
