@@ -29,6 +29,7 @@ class App extends Component {
       popSelectDog: false,
       popRegister:false,
       popCheckKey:false,
+      random:0,
       name: '',
       dogs: [],
       selectdogs: [],
@@ -41,6 +42,12 @@ class App extends Component {
     this.openregister = this.openregister.bind(this);
     this.opencheckkey = this.opencheckkey.bind(this);
 
+  }
+  handleClick() {
+    const min = 1;
+    const max = 100;
+    const rand = min + Math.random() * (max - min);
+    this.setState({ random: this.state.random + rand });
   }
   getAlldogs = () => {
     axios
@@ -194,13 +201,12 @@ confirm("Are you sure to delete?")
    
   
   register_key() {
+    handleClick();
     
-    var currentdate = new Date();
-    var datetime = currentdate.getMilliseconds();
 
     
     var email = document.getElementById('email').value;
-    var key= datetime;
+    var key= this.state.random;
     const body = {
       'email': email,
       'key': key
