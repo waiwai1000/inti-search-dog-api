@@ -33,6 +33,7 @@ class App extends Component {
       name: '',
       dogs: [],
       selectdogs: [],
+      check:[],
       keystatus:false
     };
     this.onChange = this.onChange.bind(this);
@@ -66,6 +67,9 @@ class App extends Component {
   }
   setKey() {
     this.setState({ keystatus: true });
+ 
+  alert("Sucessfully enter key");
+ 
   }
   //for popup
   onDismiss() {
@@ -135,11 +139,7 @@ class App extends Component {
       });
   }
   editdog(_id) {
-if(!this.state.keystatus)
-{
-  alert("Please enter Api key to continue");
-  return
-}
+
 
     axios
     .get(`/selectdogs?_id=${_id}`)
@@ -157,6 +157,11 @@ if(!this.state.keystatus)
     
   }
   updateDogdetails(_id) {
+    if(!this.state.keystatus)
+{
+  alert("Please enter Api key to continue");
+  return
+}
    
     var dogName = document.getElementById('dogName').value
     var dogWeight= document.getElementById('dogWeight').value
@@ -184,6 +189,7 @@ if(!this.state.keystatus)
     axios
     .post(`/updatedogdetails`,body)
     .then(result => {
+      alert("Update Sucess");
       console.log(result);
     })
     .catch(error => {
@@ -204,7 +210,7 @@ if(!this.state.keystatus)
     axios
     .post(`/add_api`,body)
     .then(result => {
-      alert("Your Api Key 2 : "+ key);
+      alert("Your Api Key : "+ key);
       console.log(result);
     })
     .catch(error => {
@@ -225,9 +231,14 @@ if(!this.state.keystatus)
     axios
     .post(`/selectapi`,body)
     .then(result => {
-     
+      this.setState({ check: result.data })
+if(check.key){
       this.setKey();
-    
+}
+else
+{
+  alert("wrong api key");
+}
       console.log(result);
     })
     .catch(error => {
