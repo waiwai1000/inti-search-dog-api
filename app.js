@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const axios = require('axios');
 const Dog = require('./Dog');
-const Key = require('./Api-key');
+// const Key = require('./Api-key');
 const bodyParser = require("body-parser");
 
 const apikey = '869744ce';
@@ -119,34 +119,34 @@ app.get('/updatedogimg', (req, res) => {
       });
   });
 
-  app.post('/add_api', (req, res) => {
-    const email = req.body.email;
-    const key = req.body.key;
-    const apikey = new Key({
-      user: email,
-      key: key
+  // app.post('/add_api', (req, res) => {
+  //   const email = req.body.email;
+  //   const key = req.body.key;
+  //   const apikey = new Key({
+  //     user: email,
+  //     key: key
   
-    });
-    apikey
-    .save()
-    .then(response => {
-      res.status(200).json(response);
-    })
-    .catch(error => {
-      res.status(400).json(error);
+  //   });
+  //   apikey
+  //   .save()
+  //   .then(response => {
+  //     res.status(200).json(response);
+  //   })
+  //   .catch(error => {
+  //     res.status(400).json(error);
      
-    });
-    });
+  //   });
+  //   });
 
-    app.post('/selectapi', (req, res) => {
-      Key.find({ key: req.body.key})
-        .then(response => {
-          res.status(200).json(response);
-        })
-        .catch(error => {
-          res.status(400).json(error);
-        });
-    });
+  //   app.post('/selectapi', (req, res) => {
+  //     Key.find({ key: req.body.key})
+  //       .then(response => {
+  //         res.status(200).json(response);
+  //       })
+  //       .catch(error => {
+  //         res.status(400).json(error);
+  //       });
+  //   });
 
   app.post('/updatedogdetails', (req, res) => {
     
