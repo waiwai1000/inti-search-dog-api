@@ -150,10 +150,32 @@ class App extends Component {
     var dogTemperament = document.getElementById('dogTemperament').value
     var dogImage_url = document.getElementById('dogImage_url').value
     
-    axios
-    .get(`/updatedogdetails?_id=${_id}&dogName=${dogName}&dogWeight=${dogWeight}&dogHeight=${dogHeight}&dogBred_for=${dogBred_for}&dogBreed_group=${dogBreed_group}&dogLife_span=${dogLife_span}&dogTemperament=${dogTemperament}&dogImage_url=${dogImage_url}`)
-    .then(result => {
+    // axios
+    // .get(`/updatedogdetails?_id=${_id}&dogName=${dogName}&dogWeight=${dogWeight}&dogHeight=${dogHeight}&dogBred_for=${dogBred_for}&dogBreed_group=${dogBreed_group}&dogLife_span=${dogLife_span}&dogTemperament=${dogTemperament}&dogImage_url=${dogImage_url}`)
+    // .then(result => {
       
+      
+    //   console.log(result);
+    // })
+    // .catch(error => {
+    //   console.log(error);
+    // });
+    const body = {
+      'dogName': dogName,
+      '_id':_id,
+      'dogWeight':dogWeight,
+      'dogHeight':dogHeight,
+      'dogBred_for':dogBred_for,
+      'dogBreed_group':dogBreed_group,
+      'dogLife_span' : dogLife_span,
+      'dogTemperament':dogTemperament,
+      'dogImage_url':dogImage_url
+
+
+    }
+    axios
+    .post(`/updatedogdetails`,body)
+    .then(result => {
       console.log(result);
     })
     .catch(error => {
@@ -220,28 +242,14 @@ class App extends Component {
                   }
                   return (
 
-
-                  
-                    
+ 
                     <div class="w3-modal-content">             
                     <div class="w3-container">
                    
-
-
-
-
-
-
-
-
-
-
-                   
-
                       <div class="form-style-5">
 
-<p>Name</p>
-<Input
+                    <p>Name</p>
+                    <Input
                     type="text"
                     name="name"
                     id="dogName"
@@ -250,7 +258,7 @@ class App extends Component {
                     onChange={this.onChange}
                   />
                   <p>Weight (KG)</p>
-<Input
+                    <Input
                     type="text"
                     name="name"
                     id="dogWeight"
@@ -259,7 +267,7 @@ class App extends Component {
                     onChange={this.onChange}
                   />
                   <p>Height (CM)</p>
-<Input
+                    <Input
                     type="text"
                     name="name"
                     id="dogHeight"
@@ -268,7 +276,7 @@ class App extends Component {
                     onChange={this.onChange}
                   />
                   <p>Bred For</p>
-<Input
+                    <Input
                     type="text"
                     name="name"
                     id="dogBred_for"
@@ -277,7 +285,7 @@ class App extends Component {
                     onChange={this.onChange}
                   />
                   <p>Breed Group</p>
-<Input
+                    <Input
                     type="text"
                     name="name"
                     id="dogBreed_group"
@@ -286,7 +294,7 @@ class App extends Component {
                     onChange={this.onChange}
                   />
                   <p>Life Span</p>
-<Input
+                    <Input
                     type="text"
                     name="name"
                     id="dogLife_span"
@@ -296,7 +304,7 @@ class App extends Component {
                     
                   />
                        <p>Temperament</p>
-<Input
+                    <Input
                     type="text"
                     name="name"
                     id="dogTemperament"
@@ -306,7 +314,7 @@ class App extends Component {
                     
                   />
                            <p>Image URL</p>
-<Input
+                    <Input
                     type="text"
                     name="name"
                     id="dogImage_url"
@@ -315,21 +323,23 @@ class App extends Component {
                     onChange={this.onChange}
                     
                   />
+               
                   <img src={dog.image} />
-                  <button
+                  <p> </p>
+                  <Button color="primary"
                           onClick={() => {
                             this.updateDogdetails(dog._id);
                           }}
                         >
                           Edit
-                        </button>
-                        <button
+                        </Button>&nbsp;&nbsp;&nbsp;
+                        <Button color="primary"
                           onClick={() => {
                             this.removedog(dog._id);
                           }}
                         >
                           Delete
-                        </button>
+                        </Button>
 </div>
                       
                      
@@ -389,20 +399,20 @@ class App extends Component {
                       
                         <img src={dog.image} />
                       </td>
-                      <td> <button
+                      <td> <Button
                           onClick={() => {
                             this.editdog(dog._id);
                           }}
                         >
                           Edit
-                        </button>
-                        <button
+                        </Button>&nbsp;&nbsp;&nbsp;
+                        <Button
                           onClick={() => {
                             this.removedog(dog._id);
                           }}
                         >
                           Delete
-                        </button>
+                        </Button>
                       </td>
                     </tr>
                   );
