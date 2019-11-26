@@ -139,8 +139,9 @@ app.get('/updatedogimg', (req, res) => {
     });
 
     app.post('/selectapi', (req, res) => {
-      Key.find({ key: req.body.key})
+      Key.find({ key : req.body.key})
         .then(response => {
+          
           res.status(200).json(response);
         })
         .catch(error => {

@@ -112,6 +112,11 @@ class App extends Component {
   }
 
   removedog(_id) {
+    if(!this.state.keystatus)
+{
+  alert("Please enter Api key to continue");
+  return
+}
     this.setState({
       dogs: this.state.dogs.filter(dog => {
         if (dog._id !== _id) return dog;
@@ -129,7 +134,11 @@ class App extends Component {
       });
   }
   editdog(_id) {
-
+if(!this.state.keystatus)
+{
+  alert("Please enter Api key to continue");
+  return
+}
 
     axios
     .get(`/selectdogs?_id=${_id}`)
@@ -232,11 +241,9 @@ class App extends Component {
     axios
     .post(`/selectapi`,body)
     .then(result => {
-      console.log(result.key);
-    if(result.key)
-    {
+     
       this.setKey();
-    }
+    
       console.log(result);
     })
     .catch(error => {
