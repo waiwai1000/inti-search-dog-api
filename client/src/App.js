@@ -198,32 +198,29 @@ class App extends Component {
   // return uuid;
   // }
   
-  register_key() {
+  // register_key() {
    
-    var email = document.getElementById('dogName').value;
-    var key= generateUUID();
-  
-    
-   
-    const body = {
-      'email': email,
-      'key': key
+  //   var email = document.getElementById('dogName').value;
+  //   var key= generateUUID();
+  //   const body = {
+  //     'email': email,
+  //     'key': key
      
 
-    }
-    axios
-    .post(`/add_api`,body)
-    .then(result => {
-      alert("Your Api Key : "+ key);
-      console.log(result);
-    })
-    .catch(error => {
-      console.log(error);
-    });
+  //   }
+  //   axios
+  //   .post(`/add_api`,body)
+  //   .then(result => {
+  //     alert("Your Api Key : "+ key);
+  //     console.log(result);
+  //   })
+  //   .catch(error => {
+  //     console.log(error);
+  //   });
 
     
     
-  }
+  // }
 
   select_check_key() {
 
