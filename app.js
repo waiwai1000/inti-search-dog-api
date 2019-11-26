@@ -152,6 +152,11 @@ app.get('/updatedogimg', (req, res) => {
       res.status(400).json(error);
     });
     });
-
+if(process.env.NODE_ENV==="production"){
+  app.use(express.static("client/build"));
+  app.get('*',(req,res)=>{
+    res.sendFile(path.resolve(_dirname,"client","build","index.html"))
+  })
+}
 app.listen(process.env.PORT || 5000)
 
