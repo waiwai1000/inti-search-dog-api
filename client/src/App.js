@@ -308,7 +308,7 @@ class App extends Component {
                   />
                   <Button color="primary"
                           onClick={() => {
-                            this.opencheckkey();
+                            this.select_check_key();
                           }}
                         >
                           Check api key
@@ -346,7 +346,7 @@ class App extends Component {
                   />
                   <Button color="primary"
                           onClick={() => {
-                            this.openregister();
+                            this.register_key();
                           }}
                         >
                           Register
@@ -496,14 +496,15 @@ class App extends Component {
           <Row>
           <Button
                           onClick={() => {
-                            this.register();
+                            this.openregister();
                           }}
                         >
                           Register Api Key
                         </Button>
+                        &nbsp;&nbsp;&nbsp;
                         <Button
                           onClick={() => {
-                            this.applykey();
+                            this.opencheckkey()();
                           }}
                         >
                           Enter Api Key
