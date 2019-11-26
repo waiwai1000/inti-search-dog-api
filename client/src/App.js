@@ -195,25 +195,9 @@ confirm("Are you sure to delete?")
   
   register_key() {
 
-
-    var d = new Date().getTime();
-    
-    if( window.performance && typeof window.performance.now === "function" )
-    {
-      d += performance.now();
-    }
-    
-    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c)
-    {
-      var r = (d + Math.random()*16)%16 | 0;
-      d = Math.floor(d/16);
-      return (c=='x' ? r : (r&0x3|0x8)).toString(16);
-    });
-
-
    
     var email = document.getElementById('email').value;
-    var key= uuid;
+    var key= Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
     const body = {
       'email': email,
       'key': key
