@@ -29,7 +29,6 @@ class App extends Component {
       popSelectDog: false,
       popRegister:false,
       popCheckKey:false,
-      
       name: '',
       dogs: [],
       selectdogs: [],
@@ -197,8 +196,6 @@ confirm("Are you sure to delete?")
   
   register_key() {
     
-
-    
     var email = document.getElementById('email').value;
   
     const body = {
@@ -207,7 +204,7 @@ confirm("Are you sure to delete?")
     axios
     .post(`/add_api`,body)
     .then(result => {
-      alert("Your Api Key : "+ result.data.key);
+      alert("Your Api Key : "+ result.data._id);
       console.log(result);
     })
     .catch(error => {
