@@ -116,11 +116,11 @@ class App extends Component {
   }
 
   removedog(_id) {
-    if(!this.state.keystatus)
-{
-  alert("Please enter Api key to continue");
-  return
-}
+//     if(!this.state.keystatus)
+// {
+//   alert("Please enter Api key to continue");
+//   return
+// }
 
     this.setState({
       dogs: this.state.dogs.filter(dog => {
@@ -157,11 +157,11 @@ class App extends Component {
     
   }
   updateDogdetails(_id) {
-    if(!this.state.keystatus)
-{
-  alert("Please enter Api key to continue");
-  return
-}
+//     if(!this.state.keystatus)
+// {
+//   alert("Please enter Api key to continue");
+//   return
+// }
    
     var dogName = document.getElementById('dogName').value
     var dogWeight= document.getElementById('dogWeight').value
@@ -199,53 +199,53 @@ class App extends Component {
   }
   
   
-  register_key() {
+//   register_key() {
    
-    var email = document.getElementById('email').value;
-    var key=   5 + (Math.random() * (1000-24));
-    const body = {
-      'email': email,
-      'key': key
-    }
-    axios
-    .post(`/add_api`,body)
-    .then(result => {
-      alert("Your Api Key : "+ key);
-      console.log(result);
-    })
-    .catch(error => {
-      console.log(error);
-    });
+//     var email = document.getElementById('email').value;
+//     var key=   5 + (Math.random() * (1000-24));
+//     const body = {
+//       'email': email,
+//       'key': key
+//     }
+//     axios
+//     .post(`/add_api`,body)
+//     .then(result => {
+//       alert("Your Api Key : "+ key);
+//       console.log(result);
+//     })
+//     .catch(error => {
+//       console.log(error);
+//     });
 
     
     
-  }
+//   }
 
-  select_check_key() {
+//   select_check_key() {
 
-    var key= document.getElementById('key').value;
+//     var key= document.getElementById('key').value;
    
-    const body = {
-      'key': key
-    }
-    axios
-    .post(`/selectapi`,body)
-    .then(result => {
-      this.setState({ check: result.data })
-if(check.key){
-      this.setKey();
-}
-else
-{
-  alert("wrong api key");
-}
-      console.log(result);
-    })
-    .catch(error => {
-      console.log(error);
-    });
+//     const body = {
+//       'key': key
+//     }
+//     axios
+//     .post(`/selectapi`,body)
+//     .then(result => {
+//       this.setState({ check: result.data })
+// if(check.key){
+//       this.setKey();
+// }
+// else
+// {
+//   alert("wrong api key");
+// }
+//       console.log(result);
+//     })
+//     .catch(error => {
+//       console.log(error);
+//     });
 
-  }
+//   }
 
   updatedogimage(_id,name) {
     this.setState({
@@ -288,7 +288,7 @@ else
               </Alert>
             </Col>
           </Row>
-          <Row>
+          {/* <Row>
             <Col>
               <Alert
                 color="green"
@@ -363,7 +363,7 @@ else
 
               </Alert>
             </Col>
-          </Row>
+          </Row> */}
           <Row>
             <Col>
               <Alert
