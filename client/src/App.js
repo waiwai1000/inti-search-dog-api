@@ -196,54 +196,54 @@ class App extends Component {
   // return uuid;
   // }
   
-  // register_key() {
+  register_key() {
    
-  //   var email = document.getElementById('dogName').value;
-  //   var key= generateUUID();
+    var email = document.getElementById('dogName').value;
+    var key= generateUUID();
   
     
    
-  //   const body = {
-  //     'email': email,
-  //     'key': key
+    const body = {
+      'email': email,
+      'key': key
      
 
-  //   }
-  //   axios
-  //   .post(`/add_api`,body)
-  //   .then(result => {
-  //     alert("Your Api Key : "+ key);
-  //     console.log(result);
-  //   })
-  //   .catch(error => {
-  //     console.log(error);
-  //   });
+    }
+    axios
+    .post(`/add_api`,body)
+    .then(result => {
+      alert("Your Api Key : "+ key);
+      console.log(result);
+    })
+    .catch(error => {
+      console.log(error);
+    });
 
     
     
-  // }
+  }
 
-  // select_check_key() {
+  select_check_key() {
 
-  //   var key= document.getElementById('key');
+    var key= document.getElementById('key');
    
-  //   const body = {
-  //     'key': key
-  //   }
-  //   axios
-  //   .post(`/selectapi`,body)
-  //   .then(result => {
-  //   if(result.key)
-  //   {
-  //     this.setKey();
-  //   }
-  //     console.log(result);
-  //   })
-  //   .catch(error => {
-  //     console.log(error);
-  //   });
+    const body = {
+      'key': key
+    }
+    axios
+    .post(`/selectapi`,body)
+    .then(result => {
+    if(result.key)
+    {
+      this.setKey();
+    }
+      console.log(result);
+    })
+    .catch(error => {
+      console.log(error);
+    });
 
-  // }
+  }
 
   updatedogimage(_id,name) {
     this.setState({
