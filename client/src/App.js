@@ -117,6 +117,7 @@ class App extends Component {
   alert("Please enter Api key to continue");
   return
 }
+confirm("Are you sure to delete?")
     this.setState({
       dogs: this.state.dogs.filter(dog => {
         if (dog._id !== _id) return dog;
@@ -134,11 +135,7 @@ class App extends Component {
       });
   }
   editdog(_id) {
-if(!this.state.keystatus)
-{
-  alert("Please enter Api key to continue");
-  return
-}
+
 
     axios
     .get(`/selectdogs?_id=${_id}`)
@@ -156,6 +153,11 @@ if(!this.state.keystatus)
     
   }
   updateDogdetails(_id) {
+    if(!this.state.keystatus)
+{
+  alert("Please enter Api key to continue");
+  return
+}
    
     var dogName = document.getElementById('dogName').value
     var dogWeight= document.getElementById('dogWeight').value
@@ -190,29 +192,28 @@ if(!this.state.keystatus)
     });
     
   }
-  //  generateUUID()
-  // {
-  //   var d = new Date().getTime();
-    
-  //   if( window.performance && typeof window.performance.now === "function" )
-  //   {
-  //     d += performance.now();
-  //   }
-    
-  //   var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c)
-  //   {
-  //     var r = (d + Math.random()*16)%16 | 0;
-  //     d = Math.floor(d/16);
-  //     return (c=='x' ? r : (r&0x3|0x8)).toString(16);
-  //   });
-  
-  // return uuid;
-  // }
   
   register_key() {
+
+
+    var d = new Date().getTime();
+    
+    if( window.performance && typeof window.performance.now === "function" )
+    {
+      d += performance.now();
+    }
+    
+    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c)
+    {
+      var r = (d + Math.random()*16)%16 | 0;
+      d = Math.floor(d/16);
+      return (c=='x' ? r : (r&0x3|0x8)).toString(16);
+    });
+
+
    
     var email = document.getElementById('email').value;
-    var key= "test";
+    var key= uuid;
     const body = {
       'email': email,
       'key': key
