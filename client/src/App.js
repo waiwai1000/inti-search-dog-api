@@ -201,12 +201,11 @@ confirm("Are you sure to delete?")
    
   
   register_key() {
-    handleClick();
     
 
     
     var email = document.getElementById('email').value;
-    var key= this.state.random;
+    var key= key.concat(email, "-",random);
     const body = {
       'email': email,
       'key': key
