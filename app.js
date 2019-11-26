@@ -138,7 +138,7 @@ app.get('/updatedogimg', (req, res) => {
     });
     });
 
-    app.get('/selectapi', (req, res) => {
+    app.post('/selectapi', (req, res) => {
       Key.find({ _id: req.body._id })
         .then(response => {
           res.status(200).json(response);
