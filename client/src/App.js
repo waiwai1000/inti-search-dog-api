@@ -30,7 +30,8 @@ class App extends Component {
       popSelectDog: false,
       name: '',
       dogs: [],
-      selectdogs: []
+      selectdogs: [],
+      keystatus:false
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -53,7 +54,9 @@ class App extends Component {
   componentDidMount() {
     this.getAlldogs();
   }
-
+  setKey() {
+    this.setState({ keystatus: true });
+  }
   //for popup
   onDismiss() {
     this.setState({ alertVisible: false });
@@ -106,6 +109,7 @@ class App extends Component {
     axios
       .get(query)
       .then(result => {
+        this.onClose();
         this.getAlldogs();
       })
       .catch(error => {
@@ -120,6 +124,7 @@ class App extends Component {
     .then(result => {
       this.setState({ selectdogs: result.data });
       console.log(this.state.selectdogs);
+      this.getAlldogs();
     })
     .catch(error => {
       console.log(error);
@@ -130,17 +135,7 @@ class App extends Component {
     
   }
   updateDogdetails(_id) {
-    // const form = new FormData()
-    // form.append("_id",_id);
-    // form.append("dogName",document.getElementById('dogName').value);
-    // form.append("dogWeight",document.getElementById('dogWeight').value);
-    // form.append("dogHeight",document.getElementById('dogHeight').value);
-    // form.append("dogBred_for",document.getElementById('dogBred_for').value);
-    // form.append("dogBreed_group",document.getElementById('dogBreed_group').value);
-    // form.append("dogLife_span",document.getElementById('dogLife_span').value);
-    // form.append("dogTemperament",document.getElementById('dogTemperament').value);
-    // form.append("Image_url",document.getElementById('dogImage_url').value);
-      
+   
     var dogName = document.getElementById('dogName').value
     var dogWeight= document.getElementById('dogWeight').value
     var dogHeight= document.getElementById('dogHeight').value
@@ -150,16 +145,7 @@ class App extends Component {
     var dogTemperament = document.getElementById('dogTemperament').value
     var dogImage_url = document.getElementById('dogImage_url').value
     
-    // axios
-    // .get(`/updatedogdetails?_id=${_id}&dogName=${dogName}&dogWeight=${dogWeight}&dogHeight=${dogHeight}&dogBred_for=${dogBred_for}&dogBreed_group=${dogBreed_group}&dogLife_span=${dogLife_span}&dogTemperament=${dogTemperament}&dogImage_url=${dogImage_url}`)
-    // .then(result => {
-      
-      
-    //   console.log(result);
-    // })
-    // .catch(error => {
-    //   console.log(error);
-    // });
+   
     const body = {
       'dogName': dogName,
       '_id':_id,
@@ -181,10 +167,76 @@ class App extends Component {
     .catch(error => {
       console.log(error);
     });
+    
+  }
+   generateUUID()
+  {
+    var d = new Date().getTime();
+    
+    if( window.performance && typeof window.performance.now === "function" )
+    {
+      d += performance.now();
+    }
+    
+    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c)
+    {
+      var r = (d + Math.random()*16)%16 | 0;
+      d = Math.floor(d/16);
+      return (c=='x' ? r : (r&0x3|0x8)).toString(16);
+    });
+  
+  return uuid;
+  }
+  
+  register_key(_id) {
+   
+    var email = document.getElementById('dogName').value;
+    var key= generateUUID();
+  
+    
+   
+    const body = {
+      'email': email,
+      'key': key
+     
+
+    }
+    axios
+    .post(`/add_api`,body)
+    .then(result => {
+      alert("Your Api Key : "+ key);
+      console.log(result);
+    })
+    .catch(error => {
+      console.log(error);
+    });
 
     
     
   }
+
+  select_check_key(_id) {
+
+    var key= document.getElementById('key');
+   
+    const body = {
+      'key': key
+    }
+    axios
+    .post(`/selectapi`,body)
+    .then(result => {
+    if(result.key)
+    {
+      this.setKey();
+    }
+      console.log(result);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+
+  }
+
   updatedogimage(_id,name) {
     this.setState({
       dogs: this.state.dogs.filter(dog => {
@@ -215,6 +267,39 @@ class App extends Component {
           <p className="lead">Search for dogs</p>
         </Jumbotron>
         <Container>
+        <Row>
+            <Col>
+             
+             
+<div class="container">
+  <h2>Modal Example</h2>
+  
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+
+  
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+     
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+          <p>Some text in the modal.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+            </Col>
+          </Row>
           <Row>
             <Col>
               <Alert

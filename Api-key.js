@@ -14,21 +14,18 @@ mongoose
   });
 
 const schema = mongoose.Schema({
-        weight: { type: String },
-        height: { type: String },
-        name: { type: String },
-        bred_for: { type: String },
-        breed_group: { type: String },
-        life_span: { type: String },
-        temperament: { type: String },
-        image: { type: String }
-
+        user: { type: String },
+        key: { type: String }
 
  
 });
 
 
-const Dog = mongoose.model('Dog', schema, 'dogCollection');
 
 
-module.exports = Dog;
+// });
+
+// const Dog = mongoose.model('Dog', schema, 'dogCollection');
+const Key = mongoose.model('Key', schema, 'keyCollection');
+
+module.exports = Key;
