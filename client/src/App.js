@@ -204,16 +204,32 @@ confirm("Are you sure to delete?")
     axios
     .post(`/add_api`,body)
     .then(result => {
-      alert("Your Api Key : "+ result.data._id);
+      // this.get_email_key(email);
       console.log(result);
     })
     .catch(error => {
       console.log(error);
     });
-
-    
     
   }
+  // get_email_key(email) {
+
+  //   const body = {
+  //     'email': email
+  //   }
+  //   axios
+  //   .post(`/getapiid`,body)
+  //   .then(result => {
+     
+  //     alert("Your api key = " + result.data._id)
+    
+  //     console.log(result);
+  //   })
+  //   .catch(error => {
+  //     console.log(error);
+  //   });
+
+  // }
 
   select_check_key() {
 

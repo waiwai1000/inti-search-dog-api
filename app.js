@@ -130,14 +130,9 @@ app.get('/updatedogimg', (req, res) => {
     .then(response => {
 
 
-      Key.find({ user: email })
-      .then(response => {
+     
         res.status(200).json(response);
-      })
-      .catch(error => {
-        res.status(400).json(error);
-      });
-
+    
 
      
     })
@@ -147,6 +142,18 @@ app.get('/updatedogimg', (req, res) => {
     });
     });
 
+// app.post('/getapiid',(req,res)=>
+// {
+// const email = req.body.email;  
+//   Key.find({ user: email })
+//   .then(response => {
+//     res.status(200).json(response);
+//   })
+//   .catch(error => {
+//     res.status(400).json(error);
+//   });
+
+// })
     app.post('/selectapi', (req, res) => {
       Key.find({ _id : req.body.key})
         .then(response => {
