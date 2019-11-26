@@ -265,12 +265,7 @@ class App extends Component {
         <Jumbotron>
           <h1 className="display-3">dogs</h1>
           <p className="lead">Search for dogs</p>
-        </Jumbotron>
-        <Container>
-        <Row>
-            <Col>
-             
-             
+              
 <div class="container">
   <h2>Modal Example</h2>
   
@@ -298,6 +293,12 @@ class App extends Component {
   </div>
   
 </div>
+        </Jumbotron>
+        <Container>
+        <Row>
+            <Col>
+             
+         
             </Col>
           </Row>
           <Row>
