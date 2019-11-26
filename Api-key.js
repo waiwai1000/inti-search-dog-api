@@ -14,8 +14,8 @@ mongoose
   });
 
 const schema = mongoose.Schema({
-        user: { type: String }
-      
+        user: { type: String },
+        key: { type: String }
 
  
 });
