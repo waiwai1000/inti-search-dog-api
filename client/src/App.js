@@ -195,11 +195,10 @@ confirm("Are you sure to delete?")
    
   
   register_key() {
-    var d = new Date();
-var n = d.getTime();
+    
 
 
-   
+    var n = 99;
     var email = document.getElementById('email').value;
     var key= (n*22*33)/55;
     const body = {
