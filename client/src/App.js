@@ -21,6 +21,7 @@ import {
 
 
 
+
 class App extends Component {
   constructor() {
     super();
@@ -42,7 +43,6 @@ class App extends Component {
     this.opencheckkey = this.opencheckkey.bind(this);
 
   }
-  
   getAlldogs = () => {
     axios
       .get('/getalldogs')
@@ -192,44 +192,46 @@ confirm("Are you sure to delete?")
     });
     
   }
-   
+  //  generateUUID()
+  // {
+  //   var d = new Date().getTime();
+    
+  //   if( window.performance && typeof window.performance.now === "function" )
+  //   {
+  //     d += performance.now();
+  //   }
+    
+  //   var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c)
+  //   {
+  //     var r = (d + Math.random()*16)%16 | 0;
+  //     d = Math.floor(d/16);
+  //     return (c=='x' ? r : (r&0x3|0x8)).toString(16);
+  //   });
+  
+  // return uuid;
+  // }
   
   register_key() {
-    
+   
     var email = document.getElementById('email').value;
-  
+    var key= "test";
     const body = {
-      'email': email
+      'email': email,
+      'key': key
     }
     axios
     .post(`/add_api`,body)
     .then(result => {
-      // this.get_email_key(email);
+      alert("Your Api Key : "+ key);
       console.log(result);
     })
     .catch(error => {
       console.log(error);
     });
+
+    
     
   }
-  // get_email_key(email) {
-
-  //   const body = {
-  //     'email': email
-  //   }
-  //   axios
-  //   .post(`/getapiid`,body)
-  //   .then(result => {
-     
-  //     alert("Your api key = " + result.data._id)
-    
-  //     console.log(result);
-  //   })
-  //   .catch(error => {
-  //     console.log(error);
-  //   });
-
-  // }
 
   select_check_key() {
 
