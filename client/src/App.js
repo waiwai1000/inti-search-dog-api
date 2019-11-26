@@ -121,7 +121,7 @@ class App extends Component {
 //   alert("Please enter Api key to continue");
 //   return
 // }
-confirm("Are you sure you wan to delete");
+
     this.setState({
       dogs: this.state.dogs.filter(dog => {
         if (dog._id !== _id) return dog;
@@ -132,6 +132,7 @@ confirm("Are you sure you wan to delete");
       .get(query)
       .then(result => {
         this.onClose();
+        alert("Delete Sucessful");
         this.getAlldogs();
       })
       .catch(error => {
@@ -189,7 +190,9 @@ confirm("Are you sure you wan to delete");
     axios
     .post(`/updatedogdetails`,body)
     .then(result => {
+      this.onClose();
       alert("Update Sucess");
+      this.getAlldogs();
       console.log(result);
     })
     .catch(error => {
