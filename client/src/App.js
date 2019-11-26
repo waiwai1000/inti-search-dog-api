@@ -74,7 +74,7 @@ class App extends Component {
   onClose() {
     this.setState({ popSelectDog: false });
     this.setState({ popRegister: false });
-    this.setState({ popCheckkey: false });
+    this.setState({ popCheckKey: false });
   }
   //for form
   onSubmit = e => {
@@ -207,8 +207,6 @@ class App extends Component {
     const body = {
       'email': email,
       'key': key
-     
-
     }
     axios
     .post(`/add_api`,body)
@@ -234,6 +232,7 @@ class App extends Component {
     axios
     .post(`/selectapi`,body)
     .then(result => {
+      console.log(result.key);
     if(result.key)
     {
       this.setKey();
