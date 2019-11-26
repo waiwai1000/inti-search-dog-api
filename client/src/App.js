@@ -28,6 +28,8 @@ class App extends Component {
     this.state = {
       alertVisible: false,
       popSelectDog: false,
+      popRegister:false,
+      popCheckKey:false,
       name: '',
       dogs: [],
       selectdogs: [],
@@ -37,6 +39,7 @@ class App extends Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.onDismiss = this.onDismiss.bind(this);
     this.onClose = this.onClose.bind(this);
+
   }
   getAlldogs = () => {
     axios
@@ -49,7 +52,12 @@ class App extends Component {
         console.log(error);
       });
   };
-  
+  openregister(){
+    this.setState({ popRegister: true });
+  }
+  opencheckkey(){
+    this.setState({ popCheckkey: true });
+  }
 
   componentDidMount() {
     this.getAlldogs();
@@ -188,7 +196,7 @@ class App extends Component {
   return uuid;
   }
   
-  register_key(_id) {
+  register_key() {
    
     var email = document.getElementById('dogName').value;
     var key= generateUUID();
@@ -215,7 +223,7 @@ class App extends Component {
     
   }
 
-  select_check_key(_id) {
+  select_check_key() {
 
     var key= document.getElementById('key');
    
@@ -265,42 +273,8 @@ class App extends Component {
         <Jumbotron>
           <h1 className="display-3">dogs</h1>
           <p className="lead">Search for dogs</p>
-              
-<div class="container">
-  <h2>Modal Example</h2>
-  
-  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
-
-  
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
-     
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modal Header</h4>
-        </div>
-        <div class="modal-body">
-          <p>Some text in the modal.</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-  
-</div>
         </Jumbotron>
         <Container>
-        <Row>
-            <Col>
-             
-         
-            </Col>
-          </Row>
           <Row>
             <Col>
               <Alert
@@ -309,6 +283,82 @@ class App extends Component {
                 toggle={this.onDismiss}
               >
                 dog not found
+              </Alert>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <Alert
+                color="green"
+                isOpen={this.state.enterKey}
+                toggle={this.onClosekey}
+              >
+                    <div class="w3-modal-content">             
+                    <div class="w3-container">
+                   
+                      <div class="form-style-5">
+
+                    <p>Api Key</p>
+                    <Input
+                    type="text"
+                    name="key"
+                    id="key" 
+                    onChange={this.onChange}
+                  />
+                  <Button color="primary"
+                          onClick={() => {
+                            this.opencheckkey();
+                          }}
+                        >
+                          Register
+                        </Button>
+</div>
+                      
+                     
+                      
+                    
+                    </div>
+                    </div>
+                  
+
+              </Alert>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <Alert
+                color="green"
+                isOpen={this.state.registerKey}
+                toggle={this.onCloseregisterKey}
+              >
+                    <div class="w3-modal-content">             
+                    <div class="w3-container">
+                   
+                      <div class="form-style-5">
+
+                    <p>Email</p>
+                    <Input
+                    type="text"
+                    name="email"
+                    id="email" 
+                    onChange={this.onChange}
+                  />
+                  <Button color="primary"
+                          onClick={() => {
+                            this.openregister();
+                          }}
+                        >
+                          Register
+                        </Button>
+</div>
+                      
+                     
+                      
+                    
+                    </div>
+                    </div>
+                  
+
               </Alert>
             </Col>
           </Row>
@@ -443,6 +493,22 @@ class App extends Component {
             </Col>
           </Row>
           <Row>
+          <Button
+                          onClick={() => {
+                            this.register();
+                          }}
+                        >
+                          Register Api Key
+                        </Button>
+                        <Button
+                          onClick={() => {
+                            this.applykey();
+                          }}
+                        >
+                          Enter Api Key
+                        </Button>
+            </Row>
+            <Row>
             <Col>
               <Form onSubmit={this.onSubmit}>
                 <FormGroup>
