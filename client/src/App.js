@@ -73,6 +73,8 @@ class App extends Component {
   }
   onClose() {
     this.setState({ popSelectDog: false });
+    this.setState({ popRegister: false });
+    this.setState({ popCheckkey: false });
   }
   //for form
   onSubmit = e => {
@@ -289,8 +291,8 @@ class App extends Component {
             <Col>
               <Alert
                 color="green"
-                isOpen={this.state.enterKey}
-                toggle={this.onClosekey}
+                isOpen={this.state.popCheckKey}
+                toggle={this.onClose}
               >
                     <div class="w3-modal-content">             
                     <div class="w3-container">
@@ -327,8 +329,8 @@ class App extends Component {
             <Col>
               <Alert
                 color="green"
-                isOpen={this.state.registerKey}
-                toggle={this.onCloseregisterKey}
+                isOpen={this.state.popRegister}
+                toggle={this.onClose}
               >
                     <div class="w3-modal-content">             
                     <div class="w3-container">
