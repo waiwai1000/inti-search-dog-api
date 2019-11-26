@@ -195,16 +195,13 @@ confirm("Are you sure to delete?")
    
   
   register_key() {
-    var text = "";
-    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-     
-    for (var i = 0; i < 10; i++)
-     { text += possible.charAt(Math.floor(Math.random() * possible.length));
-     }
+    var d = new Date();
+var n = d.getTime();
+
 
    
     var email = document.getElementById('email').value;
-    var key= text;
+    var key= (n*22*33)/55;
     const body = {
       'email': email,
       'key': key
