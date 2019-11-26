@@ -43,4 +43,4 @@ const schema = mongoose.Schema({
 const Dog = mongoose.model('Dog', schema, 'dogCollection');
 // const api_key = mongoose.model('Key', apikey, 'keyCollection');
 
-module.exports = Dog,api_key;
+module.exports = Dog;

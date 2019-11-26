@@ -2,13 +2,15 @@ const express = require('express');
 const app = express();
 const axios = require('axios');
 const Dog = require('./Dog');
+const bodyParser = require("body-parser");
 
 const apikey = '869744ce';
 const api_key =  `b285f718-c95f-4368-9aa1-36d80d906d77`;
 
 
 
-
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}));
 //localhost:5000/getdog?title=dogTitle
 app.get('/getdog', (req, res) => {
   const q = req.query.q;
@@ -116,17 +118,17 @@ app.get('/updatedogimg', (req, res) => {
       });
   });
   
-  app.get('/updatedogdetails', (req, res) => {
+  app.post('/updatedogdetails', (req, res) => {
     
-    const dogName = req.query.dogName;
-    const id = req.query._id;
-    const dogWeight = req.query.dogWeight;
-    const dogHeight = req.query.dogHeight;
-    const dogBred_for  = req.query.dogBred_for;
-    const dogBreed_group = req.query.dogBreed_group;
-    const dogLife_span = req.query.dogLife_span;
-    const dogTemperament = req.query.dogTemperament;
-    const dogImage_url = req.query.dogImage_url;
+    const dogName = req.body.dogName;
+    const id = req.body._id;
+    const dogWeight = req.body.dogWeight;
+    const dogHeight = req.body.dogHeight;
+    const dogBred_for  = req.body.dogBred_for;
+    const dogBreed_group = req.body.dogBreed_group;
+    const dogLife_span = req.body.dogLife_span;
+    const dogTemperament = req.body.dogTemperament;
+    const dogImage_url = req.body.dogImage_url;
 
     
     Dog.updateOne(
