@@ -28,18 +28,14 @@ class App extends Component {
     this.state = {
       alertVisible: false,
       popSelectDog: false,
-      popRegister:false,
-      popCheckKey:false,
       name: '',
       dogs: [],
-      selectdogs: [],
-      keystatus:false
+      selectdogs: []
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.onDismiss = this.onDismiss.bind(this);
     this.onClose = this.onClose.bind(this);
-
   }
   getAlldogs = () => {
     axios
@@ -52,19 +48,12 @@ class App extends Component {
         console.log(error);
       });
   };
-  openregister(){
-    this.setState({ popRegister: true });
-  }
-  opencheckkey(){
-    this.setState({ popCheckkey: true });
-  }
+  
 
   componentDidMount() {
     this.getAlldogs();
   }
-  setKey() {
-    this.setState({ keystatus: true });
-  }
+
   //for popup
   onDismiss() {
     this.setState({ alertVisible: false });
@@ -117,7 +106,6 @@ class App extends Component {
     axios
       .get(query)
       .then(result => {
-        this.onClose();
         this.getAlldogs();
       })
       .catch(error => {
@@ -132,7 +120,6 @@ class App extends Component {
     .then(result => {
       this.setState({ selectdogs: result.data });
       console.log(this.state.selectdogs);
-      this.getAlldogs();
     })
     .catch(error => {
       console.log(error);
@@ -143,7 +130,17 @@ class App extends Component {
     
   }
   updateDogdetails(_id) {
-   
+    // const form = new FormData()
+    // form.append("_id",_id);
+    // form.append("dogName",document.getElementById('dogName').value);
+    // form.append("dogWeight",document.getElementById('dogWeight').value);
+    // form.append("dogHeight",document.getElementById('dogHeight').value);
+    // form.append("dogBred_for",document.getElementById('dogBred_for').value);
+    // form.append("dogBreed_group",document.getElementById('dogBreed_group').value);
+    // form.append("dogLife_span",document.getElementById('dogLife_span').value);
+    // form.append("dogTemperament",document.getElementById('dogTemperament').value);
+    // form.append("Image_url",document.getElementById('dogImage_url').value);
+      
     var dogName = document.getElementById('dogName').value
     var dogWeight= document.getElementById('dogWeight').value
     var dogHeight= document.getElementById('dogHeight').value
@@ -153,7 +150,16 @@ class App extends Component {
     var dogTemperament = document.getElementById('dogTemperament').value
     var dogImage_url = document.getElementById('dogImage_url').value
     
-   
+    // axios
+    // .get(`/updatedogdetails?_id=${_id}&dogName=${dogName}&dogWeight=${dogWeight}&dogHeight=${dogHeight}&dogBred_for=${dogBred_for}&dogBreed_group=${dogBreed_group}&dogLife_span=${dogLife_span}&dogTemperament=${dogTemperament}&dogImage_url=${dogImage_url}`)
+    // .then(result => {
+      
+      
+    //   console.log(result);
+    // })
+    // .catch(error => {
+    //   console.log(error);
+    // });
     const body = {
       'dogName': dogName,
       '_id':_id,
@@ -175,76 +181,10 @@ class App extends Component {
     .catch(error => {
       console.log(error);
     });
-    
-  }
-   generateUUID()
-  {
-    var d = new Date().getTime();
-    
-    if( window.performance && typeof window.performance.now === "function" )
-    {
-      d += performance.now();
-    }
-    
-    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c)
-    {
-      var r = (d + Math.random()*16)%16 | 0;
-      d = Math.floor(d/16);
-      return (c=='x' ? r : (r&0x3|0x8)).toString(16);
-    });
-  
-  return uuid;
-  }
-  
-  register_key() {
-   
-    var email = document.getElementById('dogName').value;
-    var key= generateUUID();
-  
-    
-   
-    const body = {
-      'email': email,
-      'key': key
-     
-
-    }
-    axios
-    .post(`/add_api`,body)
-    .then(result => {
-      alert("Your Api Key : "+ key);
-      console.log(result);
-    })
-    .catch(error => {
-      console.log(error);
-    });
 
     
     
   }
-
-  select_check_key() {
-
-    var key= document.getElementById('key');
-   
-    const body = {
-      'key': key
-    }
-    axios
-    .post(`/selectapi`,body)
-    .then(result => {
-    if(result.key)
-    {
-      this.setKey();
-    }
-      console.log(result);
-    })
-    .catch(error => {
-      console.log(error);
-    });
-
-  }
-
   updatedogimage(_id,name) {
     this.setState({
       dogs: this.state.dogs.filter(dog => {
@@ -290,82 +230,6 @@ class App extends Component {
             <Col>
               <Alert
                 color="green"
-                isOpen={this.state.enterKey}
-                toggle={this.onClosekey}
-              >
-                    <div class="w3-modal-content">             
-                    <div class="w3-container">
-                   
-                      <div class="form-style-5">
-
-                    <p>Api Key</p>
-                    <Input
-                    type="text"
-                    name="key"
-                    id="key" 
-                    onChange={this.onChange}
-                  />
-                  <Button color="primary"
-                          onClick={() => {
-                            this.opencheckkey();
-                          }}
-                        >
-                          Register
-                        </Button>
-</div>
-                      
-                     
-                      
-                    
-                    </div>
-                    </div>
-                  
-
-              </Alert>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <Alert
-                color="green"
-                isOpen={this.state.registerKey}
-                toggle={this.onCloseregisterKey}
-              >
-                    <div class="w3-modal-content">             
-                    <div class="w3-container">
-                   
-                      <div class="form-style-5">
-
-                    <p>Email</p>
-                    <Input
-                    type="text"
-                    name="email"
-                    id="email" 
-                    onChange={this.onChange}
-                  />
-                  <Button color="primary"
-                          onClick={() => {
-                            this.openregister();
-                          }}
-                        >
-                          Register
-                        </Button>
-</div>
-                      
-                     
-                      
-                    
-                    </div>
-                    </div>
-                  
-
-              </Alert>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <Alert
-                color="green"
                 isOpen={this.state.popSelectDog}
                 toggle={this.onClose}
               >
@@ -378,14 +242,17 @@ class App extends Component {
                   }
                   return (
 
- 
+
+                  
+                    
                     <div class="w3-modal-content">             
                     <div class="w3-container">
                    
+
                       <div class="form-style-5">
 
-                    <p>Name</p>
-                    <Input
+<p>Name</p>
+<Input
                     type="text"
                     name="name"
                     id="dogName"
@@ -394,7 +261,7 @@ class App extends Component {
                     onChange={this.onChange}
                   />
                   <p>Weight (KG)</p>
-                    <Input
+<Input
                     type="text"
                     name="name"
                     id="dogWeight"
@@ -403,7 +270,7 @@ class App extends Component {
                     onChange={this.onChange}
                   />
                   <p>Height (CM)</p>
-                    <Input
+<Input
                     type="text"
                     name="name"
                     id="dogHeight"
@@ -412,7 +279,7 @@ class App extends Component {
                     onChange={this.onChange}
                   />
                   <p>Bred For</p>
-                    <Input
+<Input
                     type="text"
                     name="name"
                     id="dogBred_for"
@@ -421,7 +288,7 @@ class App extends Component {
                     onChange={this.onChange}
                   />
                   <p>Breed Group</p>
-                    <Input
+<Input
                     type="text"
                     name="name"
                     id="dogBreed_group"
@@ -430,7 +297,7 @@ class App extends Component {
                     onChange={this.onChange}
                   />
                   <p>Life Span</p>
-                    <Input
+<Input
                     type="text"
                     name="name"
                     id="dogLife_span"
@@ -440,7 +307,7 @@ class App extends Component {
                     
                   />
                        <p>Temperament</p>
-                    <Input
+<Input
                     type="text"
                     name="name"
                     id="dogTemperament"
@@ -450,7 +317,7 @@ class App extends Component {
                     
                   />
                            <p>Image URL</p>
-                    <Input
+<Input
                     type="text"
                     name="name"
                     id="dogImage_url"
@@ -459,23 +326,22 @@ class App extends Component {
                     onChange={this.onChange}
                     
                   />
-               
+                  <br></br>
                   <img src={dog.image} />
-                  <p> </p>
-                  <Button color="primary"
+                  <button
                           onClick={() => {
                             this.updateDogdetails(dog._id);
                           }}
                         >
                           Edit
-                        </Button>&nbsp;&nbsp;&nbsp;
-                        <Button color="primary"
+                        </button>
+                        <button
                           onClick={() => {
                             this.removedog(dog._id);
                           }}
                         >
                           Delete
-                        </Button>
+                        </button>
 </div>
                       
                      
@@ -493,22 +359,6 @@ class App extends Component {
             </Col>
           </Row>
           <Row>
-          <Button
-                          onClick={() => {
-                            this.register();
-                          }}
-                        >
-                          Register Api Key
-                        </Button>
-                        <Button
-                          onClick={() => {
-                            this.applykey();
-                          }}
-                        >
-                          Enter Api Key
-                        </Button>
-            </Row>
-            <Row>
             <Col>
               <Form onSubmit={this.onSubmit}>
                 <FormGroup>
@@ -551,20 +401,20 @@ class App extends Component {
                       
                         <img src={dog.image} />
                       </td>
-                      <td> <Button
+                      <td> <button
                           onClick={() => {
                             this.editdog(dog._id);
                           }}
                         >
                           Edit
-                        </Button>&nbsp;&nbsp;&nbsp;
-                        <Button
+                        </button>
+                        <button
                           onClick={() => {
                             this.removedog(dog._id);
                           }}
                         >
                           Delete
-                        </Button>
+                        </button>
                       </td>
                     </tr>
                   );
