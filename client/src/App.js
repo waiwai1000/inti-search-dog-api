@@ -29,7 +29,7 @@ class App extends Component {
       popSelectDog: false,
       popRegister:false,
       popCheckKey:false,
-      random:0,
+      
       name: '',
       dogs: [],
       selectdogs: [],
@@ -43,12 +43,7 @@ class App extends Component {
     this.opencheckkey = this.opencheckkey.bind(this);
 
   }
-  handleClick() {
-    const min = 1;
-    const max = 100;
-    const rand = min + Math.random() * (max - min);
-    this.setState({ random: this.state.random + rand });
-  }
+  
   getAlldogs = () => {
     axios
       .get('/getalldogs')
@@ -205,15 +200,14 @@ confirm("Are you sure to delete?")
 
     
     var email = document.getElementById('email').value;
-    var key= key.concat(email, "-",random);
+  
     const body = {
-      'email': email,
-      'key': key
+      'email': email
     }
     axios
     .post(`/add_api`,body)
     .then(result => {
-      alert("Your Api Key : "+ key);
+      alert("Your Api Key : "+ result.data.key);
       console.log(result);
     })
     .catch(error => {
