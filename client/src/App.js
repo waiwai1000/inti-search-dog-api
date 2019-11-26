@@ -19,7 +19,10 @@ import {
 
 } from 'reactstrap';
 
-
+function test()
+{
+  return 100*50*11*22;
+}
 
 
 class App extends Component {
@@ -198,9 +201,9 @@ confirm("Are you sure to delete?")
     
 
 
-    var n = 99;
+    
     var email = document.getElementById('email').value;
-    var key= (n*22*33)/55;
+    var key= test();
     const body = {
       'email': email,
       'key': key
